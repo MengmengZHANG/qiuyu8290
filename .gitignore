@@ -1,7 +1,6 @@
 ### Java language ###
 *.class
 # Package Files #
-*.jar
 *.war
 *.ear
 
