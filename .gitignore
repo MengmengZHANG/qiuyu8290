@@ -1,0 +1,30 @@
+### Java language ###
+*.class
+# Package Files #
+*.jar
+*.war
+*.ear
+
+### Emacs
+*~
+
+### Text editors (misc)
+*.bak
+
+### Maven
+target/
+
+### Eclipse ###
+# Ensure the whole bin/ content must be ignored before to use this rule
+bin/ 
+.classpath
+.project
+.externalToolBuilders
+.settings/
+.smt
+
+###Paths to logs ###
+*.log
+
+*.bat
+*.lnk
