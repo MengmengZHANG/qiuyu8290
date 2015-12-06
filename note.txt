@@ -1,0 +1,18 @@
+CREATE TABLE rmbCurrency(
+	id int NOT NULL AUTO_INCREMENT,
+	date DATE,
+	currency VARCHAR(3),
+	govIntermediatePrice FLOAT,
+	bocMeanPrice FLOAT,
+	cashInPrice FLOAT,
+	cashOutPrice FLOAT,
+	spotInPrice FLOAT,
+	spotOutPrice FLOAT,	
+	PRIMARY KEY ( id )
+);
+
+#mysql format:
+DATE - format YYYY-MM-DD
+
+INSERT INTO rmbCurrency (date,currency, govIntermediatePrice)
+VALUES ('2015-10-01','usd',6.4);
