@@ -14,7 +14,7 @@ public class Test200 implements Runnable {
 
     // http://cg06.tsi.cityway.fr/qrcode/549
     public static void main(String[] args) throws ParseException, InterruptedException {
-	for (int i = 549; i <= 1000; i++) {
+	for (int i = 1000; i <= 1100; i++) {
 	    new Test200(i).run();
 	    Thread.sleep(1000);
 	}

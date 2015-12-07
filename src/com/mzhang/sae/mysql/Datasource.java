@@ -6,6 +6,7 @@ import java.sql.Connection;
 import java.sql.SQLException;
 
 import com.mchange.v2.c3p0.ComboPooledDataSource;
+import com.sina.sae.util.SaeUserInfo;
 
 public class Datasource {
     private static Datasource datasource;
@@ -16,14 +17,14 @@ public class Datasource {
 	cpds.setDriverClass("com.mysql.jdbc.Driver");
 
 	// sae
-	// cpds.setJdbcUrl("jdbc:mysql://w.rdc.sae.sina.com.cn:3307/app_qiuyu8290");
-	// cpds.setUser(SaeUserInfo.getAccessKey());
-	// cpds.setPassword(SaeUserInfo.getSecretKey());
+	cpds.setJdbcUrl("jdbc:mysql://w.rdc.sae.sina.com.cn:3307/app_qiuyu8290");
+	cpds.setUser(SaeUserInfo.getAccessKey());
+	cpds.setPassword(SaeUserInfo.getSecretKey());
 
 	// local
-	cpds.setJdbcUrl("jdbc:mysql://localhost:3306/app_qiuyu8290");
-	cpds.setUser("root");
-	cpds.setPassword("admin");
+	// cpds.setJdbcUrl("jdbc:mysql://localhost:3306/app_qiuyu8290");
+	// cpds.setUser("root");
+	// cpds.setPassword("admin");
 
 	// the settings below are optional -- c3p0 can work with defaults
 	cpds.setMinPoolSize(5);
