@@ -1,4 +1,4 @@
-package com.mzhang.sae.mysql;
+package com.mzhang.rmbCurrency;
 
 public class RmbCurrency {
 	//YYYY-MM-DD

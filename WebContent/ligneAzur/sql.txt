@@ -1,0 +1,15 @@
+CREATE TABLE station(
+	qrcode int NOT NULL,
+	stationName VARCHAR(100),
+	PRIMARY KEY ( qrcode )
+);
+
+
+INSERT INTO station (qrcode,stationName)
+VALUES (0, 'hello');
+
+SELECT EXISTS(SELECT * FROM station WHERE qrcode = 1 AND stationName = 'hello');
+if not exist => return 0;
+
+http://localhost:8080/qiuyu8290/ligneAzur/table.jsp
+http:/172.16.206.124:8080/qiuyu8290/ligneAzur/table.jsp

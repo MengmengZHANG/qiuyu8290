@@ -16,9 +16,6 @@ import com.jaunt.Elements;
 import com.jaunt.JauntException;
 import com.jaunt.UserAgent;
 import com.jaunt.component.Table;
-import com.mzhang.sae.mysql.Currency;
-import com.mzhang.sae.mysql.RmbCurrency;
-import com.mzhang.sae.mysql.RmbCurrencyDAO;
 
 public class GetRMBCurrency implements Runnable {
     private Date start;

@@ -1,4 +1,4 @@
-package com.mzhang.sae.mysql;
+package com.mzhang.rmbCurrency;
 
 import java.beans.PropertyVetoException;
 import java.io.IOException;
@@ -8,6 +8,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+
+import com.mzhang.sae.mysql.Datasource;
 
 public class RmbCurrencyDAO {
     // date format: YYYY-MM-DD
@@ -32,26 +34,30 @@ public class RmbCurrencyDAO {
 	} catch (Exception e) {
 	    System.out.println(e);
 	} finally {
-	    if (resultSet != null)
-		try {
-		    resultSet.close();
-		} catch (SQLException e) {
-		    e.printStackTrace();
-		}
-	    if (statement != null)
-		try {
-		    statement.close();
-		} catch (SQLException e) {
-		    e.printStackTrace();
-		}
-	    if (connection != null)
-		try {
-		    connection.close();
-		} catch (SQLException e) {
-		    e.printStackTrace();
-		}
+	    close(connection, statement, resultSet);
 	}
 	return result;
+    }
+
+    private void close(Connection connection, PreparedStatement statement, ResultSet resultSet) {
+	if (resultSet != null)
+	    try {
+		resultSet.close();
+	    } catch (SQLException e) {
+		e.printStackTrace();
+	    }
+	if (statement != null)
+	    try {
+		statement.close();
+	    } catch (SQLException e) {
+		e.printStackTrace();
+	    }
+	if (connection != null)
+	    try {
+		connection.close();
+	    } catch (SQLException e) {
+		e.printStackTrace();
+	    }
     }
 
     public List<RmbCurrency> find(String dateFrom, String dateTo, Currency currency)
@@ -78,24 +84,7 @@ public class RmbCurrencyDAO {
 	} catch (Exception e) {
 	    System.out.println(e);
 	} finally {
-	    if (resultSet != null)
-		try {
-		    resultSet.close();
-		} catch (SQLException e) {
-		    e.printStackTrace();
-		}
-	    if (statement != null)
-		try {
-		    statement.close();
-		} catch (SQLException e) {
-		    e.printStackTrace();
-		}
-	    if (connection != null)
-		try {
-		    connection.close();
-		} catch (SQLException e) {
-		    e.printStackTrace();
-		}
+	    close(connection, statement, resultSet);
 	}
 
 	return result;
@@ -122,24 +111,7 @@ public class RmbCurrencyDAO {
 	    System.out.println(e);
 
 	} finally {
-	    if (resultSet != null)
-		try {
-		    resultSet.close();
-		} catch (SQLException e) {
-		    e.printStackTrace();
-		}
-	    if (statement != null)
-		try {
-		    statement.close();
-		} catch (SQLException e) {
-		    e.printStackTrace();
-		}
-	    if (connection != null)
-		try {
-		    connection.close();
-		} catch (SQLException e) {
-		    e.printStackTrace();
-		}
+	    close(connection, statement, resultSet);
 	}
 	return result;
     }
@@ -151,7 +123,7 @@ public class RmbCurrencyDAO {
 	boolean result = false;
 	try {
 	    connection = Datasource.getInstance().getConnection();
-	    String updateString = "SELECT * FROM rmbCurrency WHERE currency = ? AND date = ?";
+	    String updateString = "SELECT EXISTS(SELECT * FROM rmbCurrency WHERE currency = ? AND date = ?)";
 	    statement = connection.prepareStatement(updateString);
 	    statement.setString(1, currency.toString());
 	    statement.setString(2, date);
@@ -163,24 +135,7 @@ public class RmbCurrencyDAO {
 	    System.out.println(e);
 
 	} finally {
-	    if (resultSet != null)
-		try {
-		    resultSet.close();
-		} catch (SQLException e) {
-		    e.printStackTrace();
-		}
-	    if (statement != null)
-		try {
-		    statement.close();
-		} catch (SQLException e) {
-		    e.printStackTrace();
-		}
-	    if (connection != null)
-		try {
-		    connection.close();
-		} catch (SQLException e) {
-		    e.printStackTrace();
-		}
+	    close(connection, statement, resultSet);
 	}
 	return result;
     }
@@ -200,24 +155,7 @@ public class RmbCurrencyDAO {
 	} catch (Exception e) {
 	    System.out.println(e);
 	} finally {
-	    if (resultSet != null)
-		try {
-		    resultSet.close();
-		} catch (SQLException e) {
-		    e.printStackTrace();
-		}
-	    if (statement != null)
-		try {
-		    statement.close();
-		} catch (SQLException e) {
-		    e.printStackTrace();
-		}
-	    if (connection != null)
-		try {
-		    connection.close();
-		} catch (SQLException e) {
-		    e.printStackTrace();
-		}
+	    close(connection, statement, resultSet);
 	}
     }
 }
