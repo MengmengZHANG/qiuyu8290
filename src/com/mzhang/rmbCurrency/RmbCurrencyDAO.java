@@ -12,6 +12,32 @@ import java.util.List;
 import com.mzhang.sae.mysql.Datasource;
 
 public class RmbCurrencyDAO {
+    public List<RmbCurrency> findAll() {
+	Connection connection = null;
+	PreparedStatement statement = null;
+	ResultSet resultSet = null;
+	List<RmbCurrency> result = null;
+	try {
+	    connection = Datasource.getInstance().getConnection();
+	    String updateString = "SELECT date,currency, govIntermediatePrice FROM rmbCurrency order by date desc";
+	    statement = connection.prepareStatement(updateString);
+	    resultSet = statement.executeQuery();
+	    result = new ArrayList<RmbCurrency>();
+	    while (resultSet.next()) {
+		String date = resultSet.getString("date");
+		Float govIntermediatePrice = resultSet.getFloat("govIntermediatePrice");
+		String currency = resultSet.getString("currency");
+		RmbCurrency item = new RmbCurrency(date, Currency.valueOf(currency), govIntermediatePrice);
+		result.add(item);
+	    }
+	} catch (Exception e) {
+	    System.out.println(e);
+	} finally {
+	    close(connection, statement, resultSet);
+	}
+	return result;
+    }
+
     // date format: YYYY-MM-DD
     public List<RmbCurrency> findAll(Currency currency) {
 	Connection connection = null;
@@ -20,7 +46,7 @@ public class RmbCurrencyDAO {
 	List<RmbCurrency> result = null;
 	try {
 	    connection = Datasource.getInstance().getConnection();
-	    String updateString = "SELECT date,govIntermediatePrice FROM rmbCurrency WHERE currency = ?";
+	    String updateString = "SELECT date,govIntermediatePrice FROM rmbCurrency WHERE currency = ? order by date desc";
 	    statement = connection.prepareStatement(updateString);
 	    statement.setString(1, currency.toString());
 	    resultSet = statement.executeQuery();
@@ -68,7 +94,7 @@ public class RmbCurrencyDAO {
 	List<RmbCurrency> result = null;
 	try {
 	    connection = Datasource.getInstance().getConnection();
-	    String updateString = "SELECT date,govIntermediatePrice FROM rmbCurrency WHERE currency = ? AND date >= ? AND date <= ?";
+	    String updateString = "SELECT date,govIntermediatePrice FROM rmbCurrency WHERE currency = ? AND date >= ? AND date <= ? order by date desc";
 	    statement = connection.prepareStatement(updateString);
 	    statement.setString(1, currency.toString());
 	    statement.setString(2, dateFrom);

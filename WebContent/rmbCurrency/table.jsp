@@ -1,6 +1,7 @@
-<%@page import="com.mzhang.sae.mysql.RmbCurrency"%>
+<%@page import="com.mzhang.rmbCurrency.RmbCurrency"%>
 <%@page import="java.util.List"%>
-<%@page import="com.mzhang.sae.mysql.RmbCurrencyDAO"%>
+<%@page import="com.mzhang.rmbCurrency.RmbCurrencyDAO"%>
+<%@page import="com.mzhang.rmbCurrency.Currency"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -24,7 +25,7 @@
 <tbody>
 <%
 	RmbCurrencyDAO dao = new RmbCurrencyDAO();
-	List<RmbCurrency> results=  dao.findAll(com.mzhang.sae.mysql.Currency.USD);
+	List<RmbCurrency> results=  dao.findAll();
 	for(RmbCurrency rmbCurrency: results){
 	    out.println("<tr><td>" + rmbCurrency.getDate() + "</td><td>"+rmbCurrency.getCurrency() + "</td><td>" + rmbCurrency.getGovIntermediatePrice() + "</td><tr>");
 	}
